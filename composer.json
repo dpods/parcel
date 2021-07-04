@@ -1,0 +1,25 @@
+{
+    "name": "dpods/parcel",
+    "version": "dev-master",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "Dave Glassanos",
+            "email": "david.glassanos@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Dpods\\Parcel\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dpods\\Parcel\\ParcelServiceProvider"
+            ]
+        }
+    }
+}
+

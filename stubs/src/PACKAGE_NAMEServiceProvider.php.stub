@@ -1,0 +1,33 @@
+<?php
+
+namespace <VENDOR>\<PACKAGE_NAME>;
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\ServiceProvider;
+
+class <PACKAGE_NAME>ServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__ . '/../config/<PACKAGE_NAME_LOWER>.php' => config_path('<PACKAGE_NAME_LOWER>.php'),
+            ], 'config');
+
+            $this->publishes([
+                __DIR__ . '/../resources/views' => base_path('resources/views/vendor/<PACKAGE_NAME_LOWER>'),
+            ], 'views');
+        }
+
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', '<PACKAGE_NAME_LOWER>');
+
+        Route::prefix('<PACKAGE_NAME_LOWER>')
+            ->group(__DIR__ . '/../routes/web.php');
+    }
+
+    public function register()
+    {
+        $this->mergeConfigFrom(__DIR__ . '/../config/<PACKAGE_NAME_LOWER>.php', '<PACKAGE_NAME_LOWER>');
+    }
+}

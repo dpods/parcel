@@ -1,0 +1,24 @@
+{
+    "name": "<VENDOR_LOWER>/<PACKAGE_NAME_LOWER>",
+    "version": "dev-master",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "authors": [
+        {
+            "name": "<AUTHOR_NAME>",
+            "email": "<AUTHOR_EMAIL>"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "<VENDOR>\\<PACKAGE_NAME>\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "<VENDOR>\\<PACKAGE_NAME>\\<PACKAGE_NAME>ServiceProvider"
+            ]
+        }
+    }
+}
