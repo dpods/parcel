@@ -1,5 +1,6 @@
 {
     "name": "dpods/parcel",
+    "description": "A package manager for laravel apps",
     "version": "dev-master",
     "minimum-stability": "dev",
     "prefer-stable": true,
@@ -9,6 +10,9 @@
             "email": "david.glassanos@gmail.com"
         }
     ],
+    "require": {
+        "php": ">=7.4"
+    },
     "autoload": {
         "psr-4": {
             "Dpods\\Parcel\\": "src"
