@@ -28,7 +28,7 @@ class MakePackage extends Command
             mkdir($packagesDirectory, 0775, true);
         }
 
-        $newPackageDirectory = implode(DIRECTORY_SEPARATOR, [$packagesDirectory, strtolower($packageName)]);
+        $newPackageDirectory = implode(DIRECTORY_SEPARATOR, [$packagesDirectory, strtolower("{$vendor}-{$packageName}")]);
         if (is_dir($newPackageDirectory)) {
             $this->error('Package already exists at ' . $newPackageDirectory);
         }
