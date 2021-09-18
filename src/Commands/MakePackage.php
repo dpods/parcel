@@ -28,7 +28,7 @@ class MakePackage extends Command
             mkdir($packagesDirectory, 0775, true);
         }
 
-        $newPackageDirectory = implode(DIRECTORY_SEPARATOR, [$packagesDirectory, strtolower($packageName)]);
+        $newPackageDirectory = implode(DIRECTORY_SEPARATOR, [$packagesDirectory, strtolower("{$vendor}-{$packageName}")]);
         if (is_dir($newPackageDirectory)) {
             $this->error('Package already exists at ' . $newPackageDirectory);
         }
@@ -44,9 +44,7 @@ class MakePackage extends Command
                 ['database', 'factories'],
                 ['database', 'migrations'],
                 ['resources', 'views'],
-                ['src', 'Commands'],
-                ['src', 'Http', 'Controllers'],
-                ['src', 'Models'],
+                ['app', 'Http', 'Controllers'],
                 ['routes'],
                 ['tests'],
             ]
@@ -66,8 +64,8 @@ class MakePackage extends Command
         );
 
         $this->copyAndReplaceValues(
-            [$stubsDirectory, 'src', 'PACKAGE_NAMEServiceProvider.php.stub'],
-            [$newPackageDirectory, 'src', "{$packageName}ServiceProvider.php"],
+            [$stubsDirectory, 'app', 'PACKAGE_NAMEServiceProvider.php.stub'],
+            [$newPackageDirectory, 'app', "{$packageName}ServiceProvider.php"],
             [
                 '<VENDOR>'             => $vendor,
                 '<PACKAGE_NAME>'       => $packageName,
@@ -90,8 +88,8 @@ class MakePackage extends Command
         );
 
         $this->copyAndReplaceValues(
-            [$stubsDirectory, 'src', 'Http', 'Controllers', 'Controller.php.stub'],
-            [$newPackageDirectory, 'src', 'Http', 'Controllers', 'Controller.php'],
+            [$stubsDirectory, 'app', 'Http', 'Controllers', 'Controller.php.stub'],
+            [$newPackageDirectory, 'app', 'Http', 'Controllers', 'Controller.php'],
             [
                 '<VENDOR>'             => $vendor,
                 '<PACKAGE_NAME>'       => $packageName,
@@ -99,8 +97,8 @@ class MakePackage extends Command
         );
 
         $this->copyAndReplaceValues(
-            [$stubsDirectory, 'src', 'Http', 'Controllers', 'WelcomeController.php.stub'],
-            [$newPackageDirectory, 'src', 'Http', 'Controllers', 'WelcomeController.php'],
+            [$stubsDirectory, 'app', 'Http', 'Controllers', 'WelcomeController.php.stub'],
+            [$newPackageDirectory, 'app', 'Http', 'Controllers', 'WelcomeController.php'],
             [
                 '<VENDOR>'             => $vendor,
                 '<PACKAGE_NAME>'       => $packageName,
